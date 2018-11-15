@@ -4,4 +4,9 @@
 
 # Généralité
 
-(en cours)
+* Statut
+  - [x] à rédiger
+  - [ ] en cours de rédaction
+  - [ ] relecture
+  - [ ] finaliser
+  - [ ] révision
