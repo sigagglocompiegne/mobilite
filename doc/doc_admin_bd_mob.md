@@ -2,13 +2,5 @@
 
 # Documentation d'administration de la base #
 
-## Principes
-  * **généralité** :
-(en cours)
- 
- * **résumé fonctionnel** :
-(en cours)
+Modèle de données en cours de refonte pour 2021.
 
-## Schéma fonctionnel
-
-![schema_fonctionnel](img/schema_fonctionnel_amt_fon_eco.png)
