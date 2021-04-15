@@ -24,7 +24,7 @@ L’ARC privilégie donc une organisation dans laquelle l’Interface Homme Mach
 
 ## Voir aussi
 
-- [pPrtail des normes pour les données d'offre du transport collectif](http://www.normes-donnees-tc.org/)
+- [Portail des normes pour les données d'offre du transport collectif](http://www.normes-donnees-tc.org/)
 
 ## Jeu de données consolidé
 
