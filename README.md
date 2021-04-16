@@ -1,7 +1,6 @@
 ![picto](https://github.com/sigagglocompiegne/orga_gest_igeo/blob/master/doc/img/geocompiegnois_2020_reduit_v2.png)
 
 # Prescriptions spécifiques (locales) pour la gestion des données du réseau de transport urbain de l'Agglomération de la Région de Compiègne (TIC)
-[ ] à rédiger [x] en cours de rédaction [ ] finaliser
 
 Ensemble des éléments constituant la mise en oeuvre de la base de données sur la mobilité ainsi que l'exploitation des données dans l'application dédiée.
 
