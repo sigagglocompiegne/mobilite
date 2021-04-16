@@ -6,7 +6,7 @@
 
  ### Généralité
  
-En 2016, la migration de l'infrastructure SIG de l'Agglomération de la Région de Compiègne a permis de réfléchir sur les données du réseau transport. Avant, seules les données concernant les arrêts physiques étaient gérées par le service. Cette migration a mis en oeuvre une réflexion plus globale (lignes, dessertes, arrêts logiques et physiques) s'appuyant sur une norme amorcée par l'AFIMB et suivi par le [CERAMA](http://www.normes-donnees-tc.org/).
+En 2016, la migration de l'infrastructure SIG de l'Agglomération de la Région de Compiègne a permis de réfléchir sur les données du réseau de transport. Avant, seules les données concernant les arrêts physiques étaient gérées par le service. Cette migration a mis en oeuvre une réflexion plus globale (lignes, dessertes, arrêts logiques et physiques) s'appuyant sur une norme amorcée par l'AFIMB et suivi par le [CERAMA](http://www.normes-donnees-tc.org/).
 
  ### Résumé fonctionnel
  
