@@ -12,7 +12,7 @@ Ensemble des éléments constituant la mise en oeuvre de la base de données sur
   * [Création des vues applicatives](bdd/tic_21_vues_xapps.sql)
   * [Création des vues OpenData](bdd/tic_23_vues_xopendata.sql)
   * [Création des privilèges](bdd/tic_99_grant.sql)
-- [Documentation d'administration de la base](doc_admin_bd_tic.md)
+- [Documentation d'administration de la base](bdd/doc_admin_bd_tic.md)
 - Documentation d'administration de l'application
 
 
