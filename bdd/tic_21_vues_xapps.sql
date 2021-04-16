@@ -13,14 +13,36 @@
 -- ###                                                                                                                         ###
 -- ###############################################################################################################################
 
---VUES
+DROP MATERIALIZED VIEW x_apps.an_vmr_rurbain_tab1;
+DROP MATERIALIZED VIEW x_apps.an_vmr_rurbain_tab2;
+DROP MATERIALIZED VIEW x_apps.xapps_geo_vmr_tic_desserte;
+DROP MATERIALIZED VIEW x_apps.xapps_geo_vmr_tic_desserte_descente;
+DROP MATERIALIZED VIEW x_apps.xapps_geo_vmr_tic_djf_la_a;
+DROP MATERIALIZED VIEW x_apps.xapps_geo_vmr_tic_djf_la_ar;
+DROP MATERIALIZED VIEW IF EXISTS x_apps.xapps_geo_vmr_tic_la_eti_arretdjf;
+DROP MATERIALIZED VIEW IF EXISTS x_apps.xapps_geo_vmr_tic_la_eti_arretpu;
+DROP MATERIALIZED VIEW IF EXISTS x_apps.xapps_geo_vmr_tic_la_eti_arretla;
+DROP MATERIALIZED VIEW IF EXISTS x_apps.xapps_geo_vmr_tic_la_eti_arretsco;
+DROP MATERIALIZED VIEW IF EXISTS x_apps.xapps_geo_vmr_tic_la_eti_arrettad;
+DROP MATERIALIZED VIEW IF EXISTS x_apps.xapps_geo_vmr_tic_la_eti_terminus;										   
+DROP MATERIALIZED VIEW IF EXISTS x_apps.xapps_geo_vmr_tic_la_eti_terminus_djf;     
+DROP MATERIALIZED VIEW IF EXISTS x_apps.xapps_geo_vmr_tic_la_eti_terminus_pu;
+DROP MATERIALIZED VIEW IF EXISTS x_apps.xapps_geo_vmr_tic_la_eti_terminus_sco;
+DROP MATERIALIZED VIEW IF EXISTS x_apps.xapps_geo_vmr_tic_la_eti_terminus_tad;
+DROP MATERIALIZED VIEW IF EXISTS x_apps.xapps_geo_vmr_tic_ligne_plan;
+DROP MATERIALIZED VIEW IF EXISTS x_apps.xapps_geo_vmr_tic_lu_la_a;
+DROP MATERIALIZED VIEW IF EXISTS x_apps.xapps_geo_vmr_tic_lu_la_ar;
+DROP MATERIALIZED VIEW IF EXISTS x_apps.xapps_geo_vmr_tic_pu_la_a;
+DROP MATERIALIZED VIEW IF EXISTS x_apps.xapps_geo_vmr_tic_pu_la_ar;
+DROP MATERIALIZED VIEW IF EXISTS x_apps.xapps_geo_vmr_tic_sco_la_a;
+DROP MATERIALIZED VIEW IF EXISTS x_apps.xapps_geo_vmr_tic_sco_la_ar;
+DROP MATERIALIZED VIEW IF EXISTS x_apps.xapps_geo_vmr_tic_tad_la;
+DROP MATERIALIZED VIEW IF EXISTS x_apps.xapps_geo_vmr_tic_ze;
+DROP MATERIALIZED VIEW IF EXISTS x_apps.xapps_geo_vmr_tic_ze_200m;
+DROP MATERIALIZED VIEW IF EXISTS x_apps.xapps_geo_vmr_tic_ze_500m;
+DROP MATERIALIZED VIEW IF EXISTS x_apps.xapps_geo_vmr_tic_ze_nav;
+DROP MATERIALIZED VIEW IF EXISTS x_apps.xapps_geo_vmr_tic_zela;
 
-
-
-
-
-										   
-                                        
 -- #################################################################################################################################
 -- ###                                                                                                                           ###
 -- ###                                                      VUES APPLICATIVES                                                    ###
