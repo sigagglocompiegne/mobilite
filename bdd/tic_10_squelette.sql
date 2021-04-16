@@ -103,6 +103,26 @@ CREATE SEQUENCE m_mobilite.lk_voirie_rurbain_gid_seq
 -- ###                                                                                                                                              ###
 -- #################################################################################################################################################### 
 
+ALTER TABLE m_mobilite.an_mob_rurbain_ligne DROP CONSTRAINT an_mob_rurbain_ligne_fonct_fkey;
+ALTER TABLE m_mobilite.an_mob_rurbain_ligne DROP CONSTRAINT an_mob_rurbain_ligne_genre_fkey;
+ALTER TABLE m_mobilite.an_mob_rurbain_passage DROP CONSTRAINT an_mob_rurbain_passage_direction_fkey;
+ALTER TABLE m_mobilite.an_mob_rurbain_passage DROP CONSTRAINT an_mob_rurbain_passage_fonct_fkey;
+ALTER TABLE m_mobilite.an_mob_rurbain_passage DROP CONSTRAINT an_mob_rurbain_passage_t_passage_fkey;
+ALTER TABLE m_mobilite.geo_mob_rurbain_la DROP CONSTRAINT geo_mon_rurbain_la_hierarchie_fkey;
+ALTER TABLE m_mobilite.geo_mob_rurbain_la DROP CONSTRAINT geo_mon_rurbain_la_latype_fkey;
+ALTER TABLE m_mobilite.geo_mob_rurbain_la DROP CONSTRAINT geo_mon_rurbain_la_modification_fkey;
+ALTER TABLE m_mobilite.geo_mob_rurbain_la DROP CONSTRAINT geo_mon_rurbain_la_statut_fkey;
+ALTER TABLE m_mobilite.geo_mob_rurbain_ze DROP CONSTRAINT geo_mob_rurbain_ze_srcgeom_fkey;
+ALTER TABLE m_mobilite.geo_mob_rurbain_ze DROP CONSTRAINT geo_mob_rurbain_ze_modification_fkey;
+ALTER TABLE m_mobilite.geo_mob_rurbain_ze DROP CONSTRAINT geo_mob_rurbain_ze_mtransport_fkey;
+ALTER TABLE m_mobilite.geo_mob_rurbain_ze DROP CONSTRAINT geo_mob_rurbain_ze_smtransport_fkey;
+ALTER TABLE m_mobilite.geo_mob_rurbain_ze DROP CONSTRAINT geo_mob_rurbain_ze_statut_fkey;
+ALTER TABLE m_mobilite.geo_mob_rurbain_ze DROP CONSTRAINT geo_mob_rurbain_ze_zetype_fkey;
+ALTER TABLE m_mobilite.lk_voirie_rurbain DROP CONSTRAINT lk_voirie_rurbain_desserte_fkey;
+ALTER TABLE m_mobilite.lk_voirie_rurbain DROP CONSTRAINT lk_voirie_rurbain_idligne_fkey;
+ALTER TABLE m_mobilite.lk_voirie_rurbain DROP CONSTRAINT lk_voirie_rurbain_sens_fkey;
+ALTER TABLE m_mobilite.lk_voirie_rurbain DROP CONSTRAINT lk_voirie_rurbain_statut_fkey;
+
 DROP TABLE IF EXISTS m_mobilite.lt_mob_rurbain_desserte;
 DROP TABLE IF EXISTS m_mobilite.lt_mob_rurbain_genre;
 DROP TABLE IF EXISTS m_mobilite.lt_mob_rurbain_hierarchie;
@@ -606,15 +626,8 @@ CREATE TABLE m_mobilite.an_mob_rurbain_ligne
     date_maj timestamp without time zone,
     op_sai character varying(50) COLLATE pg_catalog."default",
     observ character varying(255) COLLATE pg_catalog."default",
-    CONSTRAINT an_mob_rurbain_ligne_pkey PRIMARY KEY (id_ligne),
-    CONSTRAINT an_mob_rurbain_ligne_fonct_fkey FOREIGN KEY (fonct)
-        REFERENCES m_mobilite.lt_mob_rurbain_fonct (code) MATCH SIMPLE
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION,
-    CONSTRAINT an_mob_rurbain_ligne_genre_fkey FOREIGN KEY (genre)
-        REFERENCES m_mobilite.lt_mob_rurbain_genre (code) MATCH SIMPLE
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION
+    CONSTRAINT an_mob_rurbain_ligne_pkey PRIMARY KEY (id_ligne)
+   
 )
 WITH (
     OIDS = FALSE
@@ -817,14 +830,6 @@ TABLESPACE pg_default;
 
 
     
--- ####################################################################################################################################################
--- ###                                                                                                                                              ###
--- ###                                                                CLE ETRANGERE DEPENDANTE                                        		    ###
--- ###                                                                                                                                              ###
--- ####################################################################################################################################################
-
-
-
 -- ####################################################################################################################################################
 -- ###                                                                                                                                              ###
 -- ###                                                                INDEX                                                                         ###
