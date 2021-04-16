@@ -3,13 +3,14 @@
 # Documentation d'administration de la base de données des données du réseau de transport urbain de l'Agglomération de la Région de Compiègne (TIC) #
 
 ## Principes
+
  ### Généralité
  
-(à rédiger)
- 
+En 2016, la migration de l'infrastructure SIG de l'Agglomération de la Région de Compiègne a permis de réfléchir sur les données du réseau transport. Avant, seules les données concernant les arrêts physiques étaient gérées par le service. Cette migration a mis en oeuvre une réflexion plus globale (lignes, dessertes, arrêts logiques et physiques) s'appuyant sur une norme amorcée par l'AFIMB et suivi par le [CERAMA](http://www.normes-donnees-tc.org/).
+
  ### Résumé fonctionnel
  
-(à rédiger)
+La base de données est principalement mise à jour par le service de l'information géographique concernant la saisie des tracés des lignes, qui s'appuie sur le référentiel des voies propre à l'Agglomération de la Région de Compiègne, l'insertion et la modification des arrêts (logiques ou physiques) ainsi que l'identification  des dessertes. Les données du patrimoine des arrêts physiques sont gérées par le service métier à travers l'application Web qui a été mise en oeuvre.
 
 ## Schéma fonctionnel
 
