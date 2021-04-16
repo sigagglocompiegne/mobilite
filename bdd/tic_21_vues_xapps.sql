@@ -1549,7 +1549,141 @@ COMMENT ON MATERIALIZED VIEW x_apps.xapps_geo_vmr_tic_ze_500m
 CREATE MATERIALIZED VIEW x_apps.xapps_geo_vmr_tic_ze_nav
 TABLESPACE pg_default
 AS
- SELECT ze.id_ze,
+
+WITH
+req_djf AS
+(
+WITH req_ze AS (
+         SELECT geo_mob_rurbain_ze.id_ze,
+            geo_mob_rurbain_ze.nom,
+            geo_mob_rurbain_ze.geom
+           FROM m_mobilite.geo_mob_rurbain_ze
+          WHERE geo_mob_rurbain_ze.statut::text = '10'::text
+        ), req_desserte_djf AS (
+         SELECT DISTINCT p.id_ze,
+            (l.nom_court::text || ' vers '::text) || t.valeur::text AS nom_court
+           FROM m_mobilite.an_mob_rurbain_passage p
+             LEFT JOIN m_mobilite.an_mob_rurbain_ligne l ON p.id_ligne::text = l.id_ligne::text
+             LEFT JOIN m_mobilite.lt_mob_rurbain_terminus t ON p.direction::text = t.code::text
+          WHERE l.genre::text = '10'::text AND (l.nom_court::text = 'D1'::text OR l.nom_court::text = 'D2'::text) AND (p.t_passage::text = '21'::text OR p.t_passage::text = '10'::text OR p.t_passage::text = '31'::text)
+          ORDER BY p.id_ze
+        )
+ SELECT DISTINCT req_ze.id_ze,
+    req_ze.nom,
+    replace(replace(replace(replace(array_agg(req_desserte_djf.nom_court ORDER BY req_desserte_djf.nom_court)::text, '"'::text, ''::text), '}'::text, ''::text), '{'::text, ''::text), ','::text, chr(10))::character varying(500) AS ligne_djf,
+    req_ze.geom
+   FROM req_ze,
+    req_desserte_djf
+  WHERE req_ze.id_ze::text = req_desserte_djf.id_ze::text
+  GROUP BY req_ze.id_ze, req_ze.nom, req_ze.geom
+),
+req_lu AS
+(
+WITH req_ze AS (
+         SELECT geo_mob_rurbain_ze.id_ze,
+            geo_mob_rurbain_ze.nom,
+            geo_mob_rurbain_ze.geom
+           FROM m_mobilite.geo_mob_rurbain_ze
+          WHERE geo_mob_rurbain_ze.statut::text = '10'::text
+        ), req_desserte_lu AS (
+         SELECT DISTINCT p.id_ze,
+            (l.nom_court::text || ' vers '::text) || t.valeur::text AS nom_court
+           FROM m_mobilite.an_mob_rurbain_passage p
+             LEFT JOIN m_mobilite.an_mob_rurbain_ligne l ON p.id_ligne::text = l.id_ligne::text
+             LEFT JOIN m_mobilite.lt_mob_rurbain_terminus t ON p.direction::text = t.code::text
+          WHERE l.genre::text = '10'::text AND l.nom_court::text <> 'D1'::text AND l.nom_court::text <> 'D2'::text AND (p.t_passage::text = '21'::text OR p.t_passage::text = '10'::text OR p.t_passage::text = '31'::text)
+          ORDER BY p.id_ze
+        )
+ SELECT DISTINCT req_ze.id_ze,
+    req_ze.nom,
+    replace(replace(replace(replace(array_agg(req_desserte_lu.nom_court ORDER BY req_desserte_lu.nom_court)::text, '"'::text, ''::text), '}'::text, ''::text), '{'::text, ''::text), ','::text, chr(10))::character varying(500) AS ligne_urbaine,
+    req_ze.geom
+   FROM req_ze,
+    req_desserte_lu
+  WHERE req_ze.id_ze::text = req_desserte_lu.id_ze::text
+  GROUP BY req_ze.id_ze, req_ze.nom, req_ze.geom
+),
+req_pu AS
+(
+ WITH req_ze AS (
+         SELECT geo_mob_rurbain_ze.id_ze,
+            geo_mob_rurbain_ze.nom,
+            geo_mob_rurbain_ze.geom
+           FROM m_mobilite.geo_mob_rurbain_ze
+          WHERE geo_mob_rurbain_ze.statut::text = '10'::text
+        ), req_desserte_pu AS (
+         SELECT DISTINCT p.id_ze,
+            (l.nom_court::text || ' '::text) || t.valeur::text AS nom_court
+           FROM m_mobilite.an_mob_rurbain_passage p
+             LEFT JOIN m_mobilite.an_mob_rurbain_ligne l ON p.id_ligne::text = l.id_ligne::text
+             LEFT JOIN m_mobilite.lt_mob_rurbain_terminus t ON p.direction::text = t.code::text
+          WHERE l.genre::text = '20'::text AND (p.t_passage::text = '21'::text OR p.t_passage::text = '10'::text OR p.t_passage::text = '31'::text)
+          ORDER BY p.id_ze
+        )
+ SELECT DISTINCT req_ze.id_ze,
+    req_ze.nom,
+    replace(replace(replace(replace(array_agg(req_desserte_pu.nom_court ORDER BY req_desserte_pu.nom_court)::text, '"'::text, ''::text), '}'::text, ''::text), '{'::text, ''::text), ','::text, chr(10))::character varying(500) AS ligne_pu,
+    req_ze.geom
+   FROM req_ze,
+    req_desserte_pu
+  WHERE req_ze.id_ze::text = req_desserte_pu.id_ze::text
+  GROUP BY req_ze.id_ze, req_ze.nom, req_ze.geom
+),
+req_sco AS
+(
+WITH req_ze AS (
+         SELECT geo_mob_rurbain_ze.id_ze,
+            geo_mob_rurbain_ze.nom,
+            geo_mob_rurbain_ze.geom
+           FROM m_mobilite.geo_mob_rurbain_ze
+          WHERE geo_mob_rurbain_ze.statut::text = '10'::text
+        ), req_desserte_pu AS (
+         SELECT DISTINCT p.id_ze,
+            (l.nom_court::text || ' Vers '::text) || t.valeur::text AS nom_court
+           FROM m_mobilite.an_mob_rurbain_passage p
+             LEFT JOIN m_mobilite.an_mob_rurbain_ligne l ON p.id_ligne::text = l.id_ligne::text
+             LEFT JOIN m_mobilite.lt_mob_rurbain_terminus t ON p.direction::text = t.code::text
+          WHERE l.genre::text = '40'::text AND (p.t_passage::text = '21'::text OR p.t_passage::text = '10'::text OR p.t_passage::text = '31'::text)
+          ORDER BY p.id_ze
+        )
+ SELECT DISTINCT req_ze.id_ze,
+    req_ze.nom,
+    replace(replace(replace(replace(array_agg(req_desserte_pu.nom_court ORDER BY req_desserte_pu.nom_court)::text, '"'::text, ''::text), '}'::text, ''::text), '{'::text, ''::text), ','::text, chr(10))::character varying(500) AS ligne_sco,
+    req_ze.geom
+   FROM req_ze,
+    req_desserte_pu
+  WHERE req_ze.id_ze::text = req_desserte_pu.id_ze::text
+  GROUP BY req_ze.id_ze, req_ze.nom, req_ze.geom	
+),
+req_tad AS
+(
+WITH req_ze AS (
+         SELECT geo_mob_rurbain_ze.id_ze,
+            geo_mob_rurbain_ze.nom,
+            geo_mob_rurbain_ze.geom
+           FROM m_mobilite.geo_mob_rurbain_ze
+          WHERE geo_mob_rurbain_ze.statut::text = '10'::text
+        ), req_desserte_pu AS (
+         SELECT DISTINCT p.id_ze,
+            (l.nom_court::text || ' Vers '::text) || t.valeur::text AS nom_court
+           FROM m_mobilite.an_mob_rurbain_passage p
+             LEFT JOIN m_mobilite.an_mob_rurbain_ligne l ON p.id_ligne::text = l.id_ligne::text
+             LEFT JOIN m_mobilite.lt_mob_rurbain_terminus t ON p.direction::text = t.code::text
+          WHERE l.genre::text = '30'::text AND (p.t_passage::text = '21'::text OR p.t_passage::text = '10'::text OR p.t_passage::text = '31'::text)
+          ORDER BY p.id_ze
+        )
+ SELECT DISTINCT req_ze.id_ze,
+    req_ze.nom,
+    replace(replace(replace(replace(array_agg(req_desserte_pu.nom_court ORDER BY req_desserte_pu.nom_court)::text, '"'::text, ''::text), '}'::text, ''::text), '{'::text, ''::text), ','::text, chr(10))::character varying(500) AS ligne_tad,
+    req_ze.geom
+   FROM req_ze,
+    req_desserte_pu
+  WHERE req_ze.id_ze::text = req_desserte_pu.id_ze::text
+  GROUP BY req_ze.id_ze, req_ze.nom, req_ze.geom
+)
+ SELECT 
+ 
+    ze.id_ze,
     ze.nom,
     lu.ligne_urbaine,
     djf.ligne_djf,
@@ -1558,18 +1692,23 @@ AS
     sco.ligne_sco,
     ze.geom
    FROM m_mobilite.geo_mob_rurbain_ze ze
-     LEFT JOIN m_mobilite.geo_v_tic_ze_nav_lu lu ON ze.id_ze::text = lu.id_ze::text
-     LEFT JOIN m_mobilite.geo_v_tic_ze_nav_djf djf ON ze.id_ze::text = djf.id_ze::text
-     LEFT JOIN m_mobilite.geo_v_tic_ze_nav_pu pu ON ze.id_ze::text = pu.id_ze::text
-     LEFT JOIN m_mobilite.geo_v_tic_ze_nav_tad tad ON ze.id_ze::text = tad.id_ze::text
-     LEFT JOIN m_mobilite.geo_v_tic_ze_nav_sco sco ON ze.id_ze::text = sco.id_ze::text
+    LEFT JOIN req_lu lu ON ze.id_ze::text = lu.id_ze::text
+     LEFT JOIN req_djf djf ON ze.id_ze::text = djf.id_ze::text
+     LEFT JOIN req_pu pu ON ze.id_ze::text = pu.id_ze::text
+     LEFT JOIN req_tad tad ON ze.id_ze::text = tad.id_ze::text
+     LEFT JOIN req_sco sco ON ze.id_ze::text = sco.id_ze::text
+     
   WHERE ze.statut::text = '10'::text
+
+
 WITH DATA;
 
 
 
 COMMENT ON MATERIALIZED VIEW x_apps.xapps_geo_vmr_tic_ze_nav
     IS 'Vue matérialisée rafraichie (trigger de rafraichissement si données ZE ou passage MAJ) géométrique des zones d''embarquement avec les lignes en desserte du réseau TIC pour exploitation dans le navigateur carto (recherche et affichage)';
+
+
 
 -- View: x_apps.xapps_geo_vmr_tic_zela
 
