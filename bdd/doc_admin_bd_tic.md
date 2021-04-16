@@ -729,21 +729,44 @@ Sans objet
 
 ## Projet QGIS pour la gestion
 
-(à intégrer)
+Un projet sous QGIS 2.14 a été réalisé pour gérer les lieux d'arrêt, les zones d'embarquement, le tracé des lignes et les dessertes aux zones d'embarquement
+R:\Projets\Metiers\1608TRA-ARC-RefTransportCollectif\04-Base de données\2016-08-10_Test_Gestion_Tic.qgs
+
+Ce projet sera ultérieurement intégré dans l'espace des procédures partagées après finalisation.
 
 ## Traitement automatisé mis en place (Workflow de l'ETL FME)
 
 ### Production des plans de lignes numériques
 
-(à intégrer)
+Un traitement a été réalisé pour chaque type de réseau afin de produire un plan numérique des lignes avec les décalages lorsque celles-ci ont un parcours commun.
+Ce traitement fera l'objet d'amélioration continue afin de mieux apparéhender ces décalages.
+
+Ces traitements sont stockés ici :
+
+R:\Ressources\4-Partage\3-Procedures\FME\prod\MOB
+
+* TIC_plan_reseau_bus_djf.fmw : pour le plan du réseau du dimanche et des jours fériés
+
+* TIC_plan_reseau_bus_interurbain.fmw : pour le plan du réseau péri-urbain
+
+* TIC_plan_reseau_bus_scolaire.fmw : pour le plan du réseau solaire
+
+* TIC_plan_reseau_bus_tad.fmw : pour le plan du réseau AlloTic
+
+* TIC_plan_reseau_bus_urbain.fmw : pour le plan du réseau urbain
+
 
 ### Export Grand Public
 
-Cet export est géré dans le Workflow global d'envoi des données à la base déportée de GEO pour l'alimentation de l'application Plan Intéractif.
+Cet export est géré dans le Workflow global d'envoi des données à la base déportée de GEO pour l'alimentation de l'application Plan Intéractif. Par défaut la partie concernant les données du réseau ne sont pas activés. Il sont activés manuellement pour un envoi ponctuel lors des mises à jour.
+
+R:\Ressources\4-Partage\3-Procedures\FME\prod\APPS_GD_PUBLIC\PLAN_INTERACTIF.fmw
 
 ### Export Open Data
 
-Cet export est géré dans le Workflow global d'envoi des données à la base déportée de GEO pour l'alimentation de l'application Plan Intéractif.
+Cet export est géré dans un workflow spécifique non automatisé. Il est lancé manuellement après la mise à jour du réseau.
+
+R:\Ressources\4-Partage\3-Procedures\FME\prod\OPEN-DATA\TIC_metadonnees.fmw
 
 ---
 
