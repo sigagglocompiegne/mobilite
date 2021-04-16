@@ -229,7 +229,368 @@ L'ensemble des classes d'objets unitaires sont stockées dans le schéma m_mobil
   * `t_t1_lk_voirie_rurbain_datesai` : gestion de la date de saisie
 
 
-### classes d'objets applicatives de gestion :
+## Liste de valeurs
+
+`lt_mob_rurbain_desserte` : Liste de valeurs du type de desserte de l'offre de transport
+
+|Nom attribut | Définition | Type  | Valeurs par défaut |
+|:---|:---|:---|:---|    
+|code|Code du type de desserte du tronçon par le réseau de transport|character varying(2)| |
+|valeur|Libellé du type de desserte du tronçon par le réseau de transport|character varying(30)| |
+
+
+Particularité(s) à noter : aucune
+
+
+Valeurs possibles :
+
+|code | valeur |
+|:---|:---|  
+|00|Non renseigné|
+|10|Principale|
+|20|Variante|
+|30|AlloTic|
+|40|Haut-le-pied|
+
+---
+
+`lt_mob_rurbain_fonct` : Liste de valeurs des jours de fonctionnement
+
+|Nom attribut | Définition | Type  | Valeurs par défaut |
+|:---|:---|:---|:---|    
+|code|Code des jours de fonctionnement|character varying(2)| |
+|valeur|Libellé des jours de fonctionnement|character varying(100)| |
+
+
+Particularité(s) à noter : aucune
+
+
+Valeurs possibles :
+
+|code | valeur |
+|:---|:---|  
+|00|Non renseigné|
+|10|du lundi au Samedi|
+|20|le dimanche et les jours fériés (sauf l'été, le 1er mai, 25 décembre, 1er janvier)|
+|12|du lundi au samedi (en période scolaire)|
+|14|du lundi au vendredi (sauf en août)|
+|16|le mercredi et le samedi (en période scolaire)|
+|17|le lundi, mardi, jeudi et vendredi (en période scolaire)|
+|40|En période scolaire|
+|50|les jours de marché|
+|80|du lundi au samedi (sur réservation)|
+|24|le samedi soir|
+|81|du lundi au samedi (cf fiche horaire pour les jours de fonctionnement)|
+|19|le mercredi (période scolaire)|
+|2|du lundi au samedi (vacances scolaires uniquement)|
+|82|du lundi au vendredi (en période scolaire)|
+|ZZ|Plus en service|
+
+---
+
+`lt_mob_rurbain_genre` : Liste de valeurs du genre de ligne de transport
+
+|Nom attribut | Définition | Type  | Valeurs par défaut |
+|:---|:---|:---|:---|    
+|code|Code du genre de ligne de transport|character varying(2)| |
+|valeur|Libellé du genre de ligne de transport|character varying(30)| |
+
+
+Particularité(s) à noter : aucune
+
+
+Valeurs possibles :
+
+|code | valeur |
+|:---|:---|  
+|00|Non renseigné|
+|10|Urbain|
+|20|Péri-Urbain|
+|30|TAD|
+|40|Scolaire|
+|50|DJF|
+
+---
+
+`lt_mob_rurbain_hierarchie` : Liste des types de hiérarchie des points d'arrêt
+
+|Nom attribut | Définition | Type  | Valeurs par défaut |
+|:---|:---|:---|:---|    
+|code|Code des hiérarchies|character varying(2)| |
+|valeur|Libellé des hiérarchies|character varying(100)| |
+
+
+Particularité(s) à noter : aucune
+
+
+Valeurs possibles :
+
+|code | valeur |
+|:---|:---|  
+|00|Non renseigné|
+|10|Lieu d'arrêt MONOMODAL|
+|20|POLE MONOMODAL|
+|30|Lieu d'arrêt MULTIMODAL|
+
+---
+
+`lt_mob_rurbain_latype` : Liste de valeurs des types de lieux d'arrêt
+
+|Nom attribut | Définition | Type  | Valeurs par défaut |
+|:---|:---|:---|:---|    
+|code|Code du type du lieu d'arrêt|character varying(2)| |
+|valeur|Libellé du type du lieu d'arrêt|character varying(100)| |
+
+
+Particularité(s) à noter : aucune
+
+
+Valeurs possibles :
+
+|code | valeur |
+|:---|:---|  
+|00|Non renseigné|
+|10|Arrêt de bus sur la voirie|
+|20|Gare routière|
+|30|Station d'autocars|
+
+---
+
+`lt_mob_rurbain_modification` : Liste de valeurs de la nature de la dernière modification d'une donnée zone d'embarquement
+
+|Nom attribut | Définition | Type  | Valeurs par défaut |
+|:---|:---|:---|:---|    
+|code|Code de la nature de la dernière modification|character varying(2)| |
+|valeur|Libellé de la nature de la dernière modification|character varying(100)| |
+
+
+Particularité(s) à noter : aucune
+
+
+Valeurs possibles :
+
+|code | valeur |
+|:---|:---|  
+|00|Non renseigné|
+|10|Création|
+|20|Mise à jour|
+|30|Suppression|
+
+---
+
+`lt_mob_rurbain_mtransport` : Liste de valeurs des modes de transport (principaux ou en sous-mode)
+
+|Nom attribut | Définition | Type  | Valeurs par défaut |
+|:---|:---|:---|:---|    
+|code|Code des modes de transport|character varying(2)| |
+|valeur|Libellé des modes de transport|character varying(100)| |
+
+
+Particularité(s) à noter : aucune
+
+
+Valeurs possibles :
+
+|code | valeur |
+|:---|:---|  
+|00|Non renseigné|
+|20|Bus|
+|21|Car|
+|60|Taxi|
+|70|Minibus|
+
+---
+
+`lt_mob_rurbain_passage` : Liste de valeurs des types de passage aux zones d'embarquement ou aux lieux d'arrêt
+
+|Nom attribut | Définition | Type  | Valeurs par défaut |
+|:---|:---|:---|:---|    
+|code|Code des types de passage|character varying(2)| |
+|valeur|Libellé des types de passage|character varying(100)| |
+
+
+Particularité(s) à noter : aucune
+
+
+Valeurs possibles :
+
+|code | valeur |
+|:---|:---|  
+|00|Non renseigné|
+|10|Simple passage|
+|31|Terminus (départ variante)|
+|32|Terminus (arrivée variante)|
+|21|Terminus (départ)|
+|22|Terminus (arrivée)|
+|40|Dépose uniquement|
+
+---
+
+`lt_mob_rurbain_sens` : Liste de valeurs du sens de desserte de l'offre de transport
+
+|Nom attribut | Définition | Type  | Valeurs par défaut |
+|:---|:---|:---|:---|    
+|code|Code du sens du tronçon par rapport à la desserte en transport|character varying(2)| |
+|valeur|Libellé du sens du tronçon par rapport à la desserte en transport|character varying(30)| |
+
+
+Particularité(s) à noter : aucune
+
+
+Valeurs possibles :
+
+|code | valeur |
+|:---|:---|  
+|00|Non renseigné|
+|10|Aller-Retour|
+|20|Aller|
+|30|Retour|
+
+---
+
+`lt_mob_rurbain_statut` : Liste de valeurs du statut du tronçon desservit par une offre de transport
+
+|Nom attribut | Définition | Type  | Valeurs par défaut |
+|:---|:---|:---|:---|    
+|code|Code du statut de la version du tronçon sur la desserte en offre de transport|character varying(2)| |
+|valeur|Libellé du statut de la version du tronçon sur la desserte en offre de transport|character varying(30)| |
+
+
+Particularité(s) à noter : aucune
+
+
+Valeurs possibles :
+
+|code | valeur |
+|:---|:---|  
+|00|Non renseigné|
+|10|Actif|
+|20|Inactif|
+|30|Projet|
+
+---
+
+`lt_mob_rurbain_t_doc` : Liste de valeurs des types de doucment rattaché aux zones d'embarquement
+
+|Nom attribut | Définition | Type  | Valeurs par défaut |
+|:---|:---|:---|:---|    
+|code|Code des types de doucment rattaché aux zones d'embarquement|character varying(2)| |
+|valeur|Libellé des valeurs des types de doucment rattaché aux zones d'embarquement|character varying(100)| |
+
+
+Particularité(s) à noter : aucune
+
+
+Valeurs possibles :
+
+|code | valeur |
+|:---|:---|  
+|00|Non renseigné|
+|10|Photographie|
+|20|Fiche(s) horaire(s)|
+
+---
+
+`lt_mob_rurbain_terminus` : Liste des libellés de terminus des lignes de transport
+
+|Nom attribut | Définition | Type  | Valeurs par défaut |
+|:---|:---|:---|:---|    
+|code|Code des terminus|character varying(2)| |
+|valeur|Libellé des terminus|character varying(100)| |
+
+
+Particularité(s) à noter : aucune
+
+
+Valeurs possibles :
+
+|code | valeur |
+|:---|:---|  
+|00|Non renseigné|
+|01|Gare|
+|02|Hôpital|
+|03|Bellicart|
+|04|Marronniers|
+|05|Port à Carreaux|
+|06|Ouïnels|
+|07|Palais|
+|08|Centre Commercial Jaux-Venette|
+|09|Ferdinand de Lesseps|
+|11|Hauts de Margny|
+|12|Ouïnels - Port à Carreaux|
+|13|Bellicart - Marroniers|
+|14|Ferdinand de Lesseps - Hôpital|
+|17|Compiègne - Gare Routière|
+|18|Collège Ferdinand Bac|
+|22|Gare - Multiplexe|
+|23|Multiplexe|
+|24|St-Jean-aux-Bois - La Brévière|
+|25|St-Sauveur - Eglise|
+|28|Bienville|
+|39|Ecole des Bruyères|
+|43|Le Meux - Centre|
+|21|Choisy-au-Bac - Sergenteret|
+|52|Jaux - Varanval|
+|53|Lacroix-St-Ouen - Mairie|
+|41|Le Meux - Croisette|
+|19|Collège Debussy|
+|15|ZI Le Meux - Petite Prée|
+|57|St-Sauveur - Mabonnerie|
+|58|Lachelle - Place|
+|55|Janville - Ile J.Lenoble|
+|30|Jonquières - Château|
+|60|Gare - Palais|
+|56|Compiègne - Armistice|
+|61|Vers Compiègne|
+|62|Depuis Compiègne|
+|63|Choisy-au-Bac|
+|40|Collège Jules Verne|
+|54|Hameau de Mercières|
+|64|Jonquières - Ecole|
+|27|Janville - Mairie|
+|65|Choisy-au-Bac - Linières|
+|90|(dépose uniquement)|
+|66|Verberie - Aramont|
+|67|St-Vaast-de-Longmont - Mairie|
+|68|Camp des Sablons|
+|69|Les Lycées|
+|70|Bois de Plaisance|
+|36|Guy Deniélou|
+|71|Verberie - Mairie|
+|72|Néry - Eglise|
+
+---
+
+`lt_mob_rurbain_zetype` : Liste de valeurs des types de zones d'embarquement
+
+|Nom attribut | Définition | Type  | Valeurs par défaut |
+|:---|:---|:---|:---|    
+|code|Code des types|character varying(2)| |
+|valeur|Libellé des types de zones d'embarquement|character varying(100)| |
+
+
+Particularité(s) à noter : aucune
+
+
+Valeurs possibles :
+
+|code | valeur |
+|:---|:---|  
+|00|Non renseigné|
+|40|Arrêt de bus, autocar (avec poteau)|
+|41|Arrêt de bus, autocar (avec abris)|
+|42|Quai de bus, autocar (avec poteau)|
+|43|Quai de bus, autocar (avec abris)|
+|44|Arrêt de bus, autocar (zébra seul)|
+|45|Arrêt de bus, autocar (sans matérialisation)|
+|48|Arrêt de bus, autocar (avec panneau routier)|
+|46|Arrêt de bus, autocar (BIV seule)|
+|47|Quai de bus, autocar (BIV seule)|
+|50|Arrêt de bus, autocar (abris avec BIV)|
+|51|Quai de bus, autocar (abris avec BIV)|
+|49|Arrêt de bus, autocar (sur panneau routier)|
+
+## classes d'objets applicatives de gestion :
 
 `geo_v_tic_gestion_desserte_ze` : Vue éditable pour la gestion des dessertes de ligne aux zones d''embarquement
 
@@ -243,7 +604,7 @@ L'ensemble des classes d'objets unitaires sont stockées dans le schéma m_mobil
 
 ---
 
-### classes d'objets applicatives métiers sont classés dans le schéma x_apps :
+## classes d'objets applicatives métiers sont classés dans le schéma x_apps :
  
 `x_apps.an_vmr_rurbain_tab1` : Vue matérialisée rafraichie formatant la liste des lignes de bus urbaines pour recherche par ligne dans GEO
 
@@ -304,7 +665,7 @@ L'ensemble des classes d'objets unitaires sont stockées dans le schéma m_mobil
 `x_apps.xapps_geo_vmr_tic_zela` : Vue géométrique des liens entre ZE et LA
 
 
-### classes d'objets applicatives grands publics sont classés dans le schéma x_apps_public :
+## classes d'objets applicatives grands publics sont classés dans le schéma x_apps_public :
 
 `x_apps_public.xappspublic_an_v_tic_la_gdpu` : Vue alphanumétique des lieux d'arrêt avec le numéro des lignes en desserte du réseau TIC (intégré au FME export pour l'application GEO Gd Public pour l'affichage des lignes dans les résultats de recherche et info-bulle)
 
@@ -350,36 +711,9 @@ L'ensemble des classes d'objets unitaires sont stockées dans le schéma m_mobil
 `x_apps_public.xappspublic_geo_v_tic_ze_gdpu_tad` : Vue géométrique formattant pour chaque ZE le n° de ligne et sa direction pour les lignes AlloTic. Cette vue permet de générer la vue geo_v_tic_ze_gdpu (export shape via FME) pour la gestion de l'affichage de la fiche info dans l'application grand public Plan d'Agglo interactif
 
 
-### classes d'objets opendata sont classés dans le schéma x_opendata :
+## classes d'objets opendata sont classés dans le schéma x_opendata :
 
 `x_apps_public.xopendata_geo_vmr_tic_ligne` : Vue géométrique sur l'iténaire de toutes les lignes du réseau TIC (pour export téléchargement métadonnée)
-
-## Liste de valeurs
-
-`lt_pav_contpos` : Liste permettant de décrire les types de position du conteneur'
-
-|Nom attribut | Définition | Type  | Valeurs par défaut |
-|:---|:---|:---|:---|    
-|code|code du type de position du conteneur|character varying(2)| |
-|valeur|libellé du type de position du conteneur|character varying(30)| |
-
-
-Particularité(s) à noter : aucune
-
-
-Valeurs possibles :
-
-|code | valeur |
-|:---|:---|  
-|10|Aérien|
-|20|Enterré|
-|00|Non renseigné|
-|30|Semi-enterré|
-
----
-
-
-
 
 ---
 
@@ -403,11 +737,11 @@ Sans objet
 
 (à intégrer)
 
-## Export Grand Public
+### Export Grand Public
 
 Cet export est géré dans le Workflow global d'envoi des données à la base déportée de GEO pour l'alimentation de l'application Plan Intéractif.
 
-## Export Open Data
+### Export Open Data
 
 Cet export est géré dans le Workflow global d'envoi des données à la base déportée de GEO pour l'alimentation de l'application Plan Intéractif.
 
