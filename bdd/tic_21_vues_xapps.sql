@@ -13,12 +13,12 @@
 -- ###                                                                                                                         ###
 -- ###############################################################################################################################
 
-DROP MATERIALIZED VIEW x_apps.an_vmr_rurbain_tab1;
-DROP MATERIALIZED VIEW x_apps.an_vmr_rurbain_tab2;
-DROP MATERIALIZED VIEW x_apps.xapps_geo_vmr_tic_desserte;
-DROP MATERIALIZED VIEW x_apps.xapps_geo_vmr_tic_desserte_descente;
-DROP MATERIALIZED VIEW x_apps.xapps_geo_vmr_tic_djf_la_a;
-DROP MATERIALIZED VIEW x_apps.xapps_geo_vmr_tic_djf_la_ar;
+DROP MATERIALIZED VIEW IF EXISTS x_apps.an_vmr_rurbain_tab1;
+DROP MATERIALIZED VIEW IF EXISTS x_apps.an_vmr_rurbain_tab2;
+DROP MATERIALIZED VIEW IF EXISTS x_apps.xapps_geo_vmr_tic_desserte;
+DROP MATERIALIZED VIEW IF EXISTS x_apps.xapps_geo_vmr_tic_desserte_descente;
+DROP MATERIALIZED VIEW IF EXISTS x_apps.xapps_geo_vmr_tic_djf_la_a;
+DROP MATERIALIZED VIEW IF EXISTS x_apps.xapps_geo_vmr_tic_djf_la_ar;
 DROP MATERIALIZED VIEW IF EXISTS x_apps.xapps_geo_vmr_tic_la_eti_arretdjf;
 DROP MATERIALIZED VIEW IF EXISTS x_apps.xapps_geo_vmr_tic_la_eti_arretpu;
 DROP MATERIALIZED VIEW IF EXISTS x_apps.xapps_geo_vmr_tic_la_eti_arretla;
