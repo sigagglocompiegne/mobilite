@@ -306,12 +306,53 @@ L'ensemble des classes d'objets unitaires sont stockées dans le schéma m_mobil
 
 ### classes d'objets applicatives grands publics sont classés dans le schéma x_apps_public :
 
-`x_apps_public.xappspublic_geo_dec_pav_verre` : Vue géographique présentant les données servant à l''export pour l''appli Gd Public des conteneurs verres 
+`x_apps_public.xappspublic_an_v_tic_la_gdpu` : Vue alphanumétique des lieux d'arrêt avec le numéro des lignes en desserte du réseau TIC (intégré au FME export pour l'application GEO Gd Public pour l'affichage des lignes dans les résultats de recherche et info-bulle)
+
+`x_apps_public.xappspublic_an_v_tic_la_gdpu_djf` : Vue alphanumétique des lieux d'arrêt avec le numéro des lignes dimanche et jours fériés en desserte du réseau TIC (intégré à la vue xapps_an_v_tic_la_gdpu pour export dans l'application GEO Gd Public pour l'affichage des lignes dans les résultats de recherche et info-bulle
+
+`x_apps_public.xappspublic_an_v_tic_la_gdpu_lu_1` : Vue alphanumétique des lieux d'arrêt avec le numéro des lignes urbaines (1 à 6) en desserte du réseau TIC (intégré à la vue an_v_tic_la_gdpu pour export dans l'application GEO Gd Public pour l'affichage des lignes dans les résultats de recherche et info-bulle
+
+`x_apps_public.xappspublic_an_v_tic_la_gdpu_lu_2` : Vue alphanumétique des lieux d'arrêt avec le numéro des lignes urbaines (ARC Express et HM) en desserte du réseau TIC (intégré à la vue an_v_tic_la_gdpu pour export dans l'application GEO Gd Public pour l'affichage des lignes dans les résultats de recherche et info-bulle
+
+`x_apps_public.xappspublic_an_v_tic_la_gdpu_pu` : Vue alphanumétique des lieux d'arrêt avec le numéro des lignes péri_urbain (hors ARC Express) en desserte du réseau TIC (intégré à la vue an_v_tic_la_gdpu pour export dans l'application GEO Gd Public pour l'affichage des lignes dans les résultats de recherche et info-bulle
+
+`x_apps_public.xappspublic_an_v_tic_la_gdpu_sco` : Vue alphanumétique des lieux d'arrêt avec le numéro des lignes scolaires en desserte du réseau TIC (intégré à la vue an_v_tic_la_gdpu pour export dans l'application GEO Gd Public pour l'affichage des lignes dans les résultats de recherche et info-bulle
+
+`x_apps_public.xappspublic_an_v_tic_la_gdpu_tad` : Vue alphanumétique des lieux d'arrêt avec le numéro des lignes scolaires en desserte du réseau TIC (intégré à la vue an_v_tic_la_gdpu pour export dans l'application GEO Gd Public pour l'affichage des lignes dans les résultats de recherche et info-bulle
+
+`x_apps_public.xappspublic_an_v_tic_ze_gdpu` : Vue alphanumétique des zones d'embarquement avec le numéro des lignes en desserte du réseau TIC  (intégré au FME d'export pour l'application GEO Gd Public pour l'affichage des lignes dans les résultats de recherche et info-bulle)
+
+`x_apps_public.xappspublic_an_v_tic_ze_gdpu_djf` : Vue alphanumétique des zones d'embarquement avec le numéro des lignes dimanche et jours fériés en desserte du réseau TIC (intégré à la vue an_v_tic_ze_gdpu pour export dans l'application GEO Gd Public pour l'affichage des lignes dans les résultats de recherche et info-bulle
+
+`x_apps_public.xappspublic_an_v_tic_ze_gdpu_lu_1` : Vue alphanumétique des zones d'embarquement avec le numéro des lignes urbaines (1 à 6) en desserte du réseau TIC (intégré à la vue an_v_tic_ze_gdpu pour export dans l'application GEO Gd Public pour l'affichage des lignes dans les résultats de recherche et info-bulle
+
+`x_apps_public.xappspublic_an_v_tic_ze_gdpu_lu_2` : Vue alphanumétique des zones d'embarquement avec le numéro des lignes urbaines (ARC Express et HM) en desserte du réseau TIC (intégré à la vue an_v_tic_ze_gdpu pour export dans l'application GEO Gd Public pour l'affichage des lignes dans les résultats de recherche et info-bulle
+
+`x_apps_public.xappspublic_an_v_tic_ze_gdpu_pu` : Vue alphanumétique des zones d'embarquement avec le numéro des lignes péri_urbain (hors ARC Express) en desserte du réseau TIC (intégré à la vue an_v_tic_ze_gdpu pour export dans l'application GEO Gd Public pour l'affichage des lignes dans les résultats de recherche et info-bulle
+
+`x_apps_public.xappspublic_an_v_tic_ze_gdpu_sco` : Vue alphanumétique des zones d'embarquement avec le numéro des lignes scolaires en desserte du réseau TIC (intégré à la vue an_v_tic_ze_gdpu pour export dans l'application GEO Gd Public pour l'affichage des lignes dans les résultats de recherche et info-bulle
+
+`x_apps_public.xappspublic_an_v_tic_ze_gdpu_tad` : Vue alphanumétique des zones d'embarquement avec le numéro des lignes scolaires en desserte du réseau TIC (intégré à la vue an_v_tic_ze_gdpu pour export dans l'application GEO Gd Public pour l'affichage des lignes dans les résultats de recherche et info-bulle
+
+`x_apps_public.xappspublic_geo_v_tic_la_tampon` : Vue géométrique contenant les tampons d'emprise des lieux d'arrêt pour EXPORT FME et recherche des adresse dans ses tampons pour remonter l'arrêt et les lignes en desserte
+
+`x_apps_public.xappspublic_geo_v_tic_ze_gdpu` : Vue géométrique des zones d'embarquement avec les lignes en desserte du réseau TIC (intégré  au FME d'export pour exploitation dans l'application grand public Plan d'Agglomération Interactif (fiche information))
+
+`x_apps_public.xappspublic_geo_v_tic_ze_gdpu_djf` : Vue géométrique formattant pour chaque ZE le n° de ligne et sa direction pour les lignes Dimanche et jours fériés. Cette vue permet de générer la vue geo_v_tic_ze_gdpu (export shape via FME) pour la gestion de l'affichage de la fiche info dans l'application grand public Plan d'Agglo interactif
+
+`x_apps_public.xappspublic_geo_v_tic_ze_gdpu_lu` : Vue géométrique formattant pour chaque ZE le n° de ligne et sa direction pour les lignes urbaines. Cette vue permet de générer la vue geo_v_tic_ze_gdpu (export shape via FME) pour la gestion de l'affichage de la fiche info dans l''application grand public Plan d'Agglo interactif
+
+`x_apps_public.xappspublic_geo_v_tic_ze_gdpu_pu` : Vue géométrique formattant pour chaque ZE le n° de ligne et sa direction pour les lignes péri-urbaines. Cette vue permet de générer la vue geo_v_tic_ze_gdpu (export shape via FME) pour la gestion de l'affichage de la fiche info dans l'application grand public Plan d'Agglo interactif
+
+`x_apps_public.xappspublic_geo_v_tic_ze_gdpu_sco` : Vue géométrique formattant pour chaque ZE le n° de ligne et sa direction pour les lignes scolaires. Cette vue permet de générer la vue geo_v_tic_ze_gdpu (export shape via FME) pour la gestion de l'affichage de la fiche info dans l'application grand public Plan d'Agglo interactif
+
+
+`x_apps_public.xappspublic_geo_v_tic_ze_gdpu_tad` : Vue géométrique formattant pour chaque ZE le n° de ligne et sa direction pour les lignes AlloTic. Cette vue permet de générer la vue geo_v_tic_ze_gdpu (export shape via FME) pour la gestion de l'affichage de la fiche info dans l'application grand public Plan d'Agglo interactif
 
 
 ### classes d'objets opendata sont classés dans le schéma x_opendata :
 
-(à produire)
+`x_apps_public.xopendata_geo_vmr_tic_ligne` : Vue géométrique sur l'iténaire de toutes les lignes du réseau TIC (pour export téléchargement métadonnée)
 
 ## Liste de valeurs
 
