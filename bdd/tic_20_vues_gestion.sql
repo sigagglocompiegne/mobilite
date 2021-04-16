@@ -14,7 +14,11 @@
 -- ###############################################################################################################################
 
 
-
+DROP VIEW IF EXISTS m_mobilite.geo_v_tic_gestion_desserte_ze;
+DROP VIEW IF EXISTS m_mobilite.geo_v_tic_gestion_doc_ze;
+DROP VIEW IF EXISTS m_mobilite.geo_v_tic_gestion_ligne;
+DROP VIEW IF EXISTS m_mobilite.geo_v_tic_gestion_ligne_insert;
+DROP VIEW IF EXISTS m_mobilite.geo_v_tic_ligne_plan;
 
 
 -- #################################################################################################################################
