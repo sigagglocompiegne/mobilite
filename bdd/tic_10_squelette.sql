@@ -117,6 +117,14 @@ DROP TABLE IF EXISTS m_mobilite.lt_mob_rurbain_terminus;
 DROP TABLE IF EXISTS m_mobilite.lt_mob_rurbain_zetype;
 DROP TABLE IF EXISTS m_mobilite.lt_mob_rurbain_fonct;
 
+DROP TABLE IF EXISTS m_mobilite.an_mob_rurbain_docligne;
+DROP TABLE IF EXISTS m_mobilite.an_mob_rurbain_docze;
+DROP TABLE IF EXISTS m_mobilite.an_mob_rurbain_ligne;
+DROP TABLE IF EXISTS m_mobilite.an_mob_rurbain_passage;
+DROP TABLE IF EXISTS m_mobilite.geo_mob_rurbain_la;
+DROP TABLE IF EXISTS m_mobilite.geo_mob_rurbain_ze;
+DROP TABLE IF EXISTS m_mobilite.lk_voirie_rurbain;
+
 DROP SEQUENCE IF EXISTS m_mobilite.lk_voirie_rurbain_gid_seq;
 DROP SEQUENCE IF EXISTS  m_mobilite.geo_mob_rurbain_ze_id_ze_seq;
 DROP SEQUENCE IF EXISTS  m_mobilite.geo_mob_rurbain_la_id_la_seq;
@@ -532,9 +540,280 @@ INSERT INTO m_mobilite.lt_mob_rurbain_zetype(
 -- ####################################################################################################################################################
 
 
--- ################################################################# TABLE an_ev_objet ###############################################
+-- ################################################################# TABLE an_mob_rurbain_docligne ###############################################
 
+-- Table: m_mobilite.an_mob_rurbain_docligne
 
+-- DROP TABLE m_mobilite.an_mob_rurbain_docligne;
+
+CREATE TABLE m_mobilite.an_mob_rurbain_docligne
+(
+    id_doc integer NOT NULL DEFAULT nextval('m_mobilite.an_mob_rurbain_docligne_iddoc_seq'::regclass),
+    id_ligne character varying(30) COLLATE pg_catalog."default" NOT NULL,
+    date_sai timestamp without time zone NOT NULL DEFAULT now(),
+    date_maj timestamp without time zone,
+    date_dutil timestamp without time zone,
+    date_futil timestamp without time zone,
+    op_sai character varying(50) COLLATE pg_catalog."default",
+    n_fichier character varying(100) COLLATE pg_catalog."default",
+    l_fichier character varying(255) COLLATE pg_catalog."default",
+    observ character varying(255) COLLATE pg_catalog."default",
+    CONSTRAINT an_mob_rurbain_docligne_pkey PRIMARY KEY (id_doc)
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+-- ################################################################# TABLE an_mob_rurbain_docze ###############################################
+-- Table: m_mobilite.an_mob_rurbain_docze
+
+-- DROP TABLE m_mobilite.an_mob_rurbain_docze;
+
+CREATE TABLE m_mobilite.an_mob_rurbain_docze
+(
+    gid integer NOT NULL DEFAULT nextval('m_mobilite.an_mob_rurbain_docze_iddoc_seq'::regclass),
+    id character varying(30) COLLATE pg_catalog."default",
+    media text COLLATE pg_catalog."default",
+    miniature bytea,
+    n_fichier text COLLATE pg_catalog."default",
+    t_fichier text COLLATE pg_catalog."default",
+    op_sai character varying(100) COLLATE pg_catalog."default",
+    date_sai timestamp without time zone,
+    CONSTRAINT an_mob_rurbain_docze_pkey PRIMARY KEY (gid)
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+-- ################################################################# TABLE an_mob_rurbain_ligne ###############################################
+-- Table: m_mobilite.an_mob_rurbain_ligne
+
+-- DROP TABLE m_mobilite.an_mob_rurbain_ligne;
+
+CREATE TABLE m_mobilite.an_mob_rurbain_ligne
+(
+    id_ligne character varying(30) COLLATE pg_catalog."default" NOT NULL,
+    lib_res character varying(10) COLLATE pg_catalog."default",
+    lib_exploi character varying(50) COLLATE pg_catalog."default",
+    lib_aot character varying(20) COLLATE pg_catalog."default" DEFAULT '00'::character varying,
+    nom_court character varying(40) COLLATE pg_catalog."default",
+    nom_ligne character varying(255) COLLATE pg_catalog."default",
+    acces_pmr boolean DEFAULT false,
+    genre character varying(2) COLLATE pg_catalog."default" DEFAULT '00'::character varying,
+    fonct character varying(2) COLLATE pg_catalog."default" DEFAULT '00'::character varying,
+    date_sai timestamp without time zone NOT NULL DEFAULT now(),
+    date_maj timestamp without time zone,
+    op_sai character varying(50) COLLATE pg_catalog."default",
+    observ character varying(255) COLLATE pg_catalog."default",
+    CONSTRAINT an_mob_rurbain_ligne_pkey PRIMARY KEY (id_ligne),
+    CONSTRAINT an_mob_rurbain_ligne_fonct_fkey FOREIGN KEY (fonct)
+        REFERENCES m_mobilite.lt_mob_rurbain_fonct (code) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT an_mob_rurbain_ligne_genre_fkey FOREIGN KEY (genre)
+        REFERENCES m_mobilite.lt_mob_rurbain_genre (code) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+-- ################################################################# TABLE an_mob_rurbain_passage ###############################################
+-- Table: m_mobilite.an_mob_rurbain_passage
+
+-- DROP TABLE m_mobilite.an_mob_rurbain_passage;
+
+CREATE TABLE m_mobilite.an_mob_rurbain_passage
+(
+    id_en integer NOT NULL DEFAULT nextval('m_mobilite.an_mob_rurbain_passage_iden_seq'::regclass),
+    id_ze character varying(30) COLLATE pg_catalog."default" NOT NULL,
+    id_ligne character varying(30) COLLATE pg_catalog."default" NOT NULL,
+    date_sai timestamp without time zone DEFAULT now(),
+    date_maj timestamp without time zone,
+    op_sai character varying(50) COLLATE pg_catalog."default",
+    t_passage character varying(2) COLLATE pg_catalog."default",
+    direction character varying(2) COLLATE pg_catalog."default" DEFAULT '00'::character varying,
+    fonct character varying(2) COLLATE pg_catalog."default" DEFAULT '00'::character varying,
+    CONSTRAINT an_mob_rurbain_passage_iden_pkey PRIMARY KEY (id_en),
+    CONSTRAINT an_mob_rurbain_passage_direction_fkey FOREIGN KEY (direction)
+        REFERENCES m_mobilite.lt_mob_rurbain_terminus (code) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT an_mob_rurbain_passage_fonct_fkey FOREIGN KEY (fonct)
+        REFERENCES m_mobilite.lt_mob_rurbain_fonct (code) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT an_mob_rurbain_passage_t_passage_fkey FOREIGN KEY (t_passage)
+        REFERENCES m_mobilite.lt_mob_rurbain_passage (code) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+-- ################################################################# TABLE geo_mob_rurbain_la ###############################################
+-- Table: m_mobilite.geo_mob_rurbain_la
+
+-- DROP TABLE m_mobilite.geo_mob_rurbain_la;
+
+CREATE TABLE m_mobilite.geo_mob_rurbain_la
+(
+    id_la character varying(30) COLLATE pg_catalog."default" NOT NULL,
+    date_sai timestamp without time zone NOT NULL DEFAULT now(),
+    date_maj timestamp without time zone,
+    op_sai character varying(50) COLLATE pg_catalog."default",
+    modification character varying(2) COLLATE pg_catalog."default" DEFAULT '00'::character varying,
+    statut character varying(2) COLLATE pg_catalog."default" DEFAULT '10'::character varying,
+    nom character varying(50) COLLATE pg_catalog."default",
+    nom_court character varying(50) COLLATE pg_catalog."default",
+    description character varying(255) COLLATE pg_catalog."default",
+    x_l93 numeric(8,2),
+    y_l93 numeric(9,2),
+    date_deb timestamp without time zone,
+    date_fin timestamp without time zone,
+    hierarchie character varying(2) COLLATE pg_catalog."default" DEFAULT '10'::character varying,
+    insee character varying(5) COLLATE pg_catalog."default",
+    commune character varying(80) COLLATE pg_catalog."default",
+    id_parent character varying(30) COLLATE pg_catalog."default",
+    latype character varying(2) COLLATE pg_catalog."default" DEFAULT '10'::character varying,
+    sens character varying(2) COLLATE pg_catalog."default" DEFAULT '00'::character varying,
+    angle integer DEFAULT 0,
+    observ character varying(255) COLLATE pg_catalog."default",
+    geom geometry(Point,2154),
+    v_tampon integer,
+    geom2 geometry(Polygon,2154),
+    CONSTRAINT geo_mob_rurbain_la_pkey PRIMARY KEY (id_la),
+    CONSTRAINT geo_mob_rurbain_la_sens_fkey FOREIGN KEY (sens)
+        REFERENCES m_mobilite.lt_mob_rurbain_sens (code) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT geo_mon_rurbain_la_hierarchie_fkey FOREIGN KEY (hierarchie)
+        REFERENCES m_mobilite.lt_mob_rurbain_hierarchie (code) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT geo_mon_rurbain_la_latype_fkey FOREIGN KEY (latype)
+        REFERENCES m_mobilite.lt_mob_rurbain_latype (code) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT geo_mon_rurbain_la_modification_fkey FOREIGN KEY (modification)
+        REFERENCES m_mobilite.lt_mob_rurbain_modification (code) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT geo_mon_rurbain_la_statut_fkey FOREIGN KEY (statut)
+        REFERENCES m_mobilite.lt_mob_rurbain_statut (code) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+-- ################################################################# TABLE geo_mob_rurbain_ze ###############################################
+-- Table: m_mobilite.geo_mob_rurbain_ze
+
+-- DROP TABLE m_mobilite.geo_mob_rurbain_ze;
+
+CREATE TABLE m_mobilite.geo_mob_rurbain_ze
+(
+    id_ze character varying(30) COLLATE pg_catalog."default" NOT NULL,
+    date_sai timestamp without time zone NOT NULL DEFAULT now(),
+    date_maj timestamp without time zone,
+    op_sai character varying(50) COLLATE pg_catalog."default",
+    modification character varying(2) COLLATE pg_catalog."default" DEFAULT '00'::character varying,
+    src_geom character varying(2) COLLATE pg_catalog."default" DEFAULT '00'::character varying,
+    statut character varying(2) COLLATE pg_catalog."default" DEFAULT '10'::character varying,
+    nom character varying(50) COLLATE pg_catalog."default",
+    nom_court character varying(50) COLLATE pg_catalog."default",
+    description character varying(255) COLLATE pg_catalog."default",
+    x_l93 numeric(8,2),
+    y_l93 numeric(9,2),
+    z_ngf numeric(5,2),
+    date_deb timestamp without time zone,
+    date_fin timestamp without time zone,
+    acces_ufr boolean DEFAULT false,
+    sign_audi boolean DEFAULT false,
+    sign_visu boolean DEFAULT false,
+    insee character varying(5) COLLATE pg_catalog."default",
+    commune character varying(80) COLLATE pg_catalog."default",
+    id_la character varying(30) COLLATE pg_catalog."default",
+    mtransport character varying(2) COLLATE pg_catalog."default" DEFAULT '20'::character varying,
+    smtransport character varying(2) COLLATE pg_catalog."default" DEFAULT '00'::character varying,
+    autransport character varying(100) COLLATE pg_catalog."default",
+    zetype character varying(2) COLLATE pg_catalog."default" DEFAULT '40'::character varying,
+    observ character varying(255) COLLATE pg_catalog."default",
+    geom geometry(Point,2154),
+    ppub boolean NOT NULL DEFAULT false,
+    CONSTRAINT geo_mob_rurbain_ze_idze_pkey PRIMARY KEY (id_ze),
+    CONSTRAINT geo_mob_rurbain_ze FOREIGN KEY (src_geom)
+        REFERENCES r_objet.lt_src_geom (code) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT geo_mob_rurbain_ze_modification_fkey FOREIGN KEY (modification)
+        REFERENCES m_mobilite.lt_mob_rurbain_modification (code) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT geo_mob_rurbain_ze_mtransport_fkey FOREIGN KEY (mtransport)
+        REFERENCES m_mobilite.lt_mob_rurbain_mtransport (code) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT geo_mob_rurbain_ze_smtransport_fkey FOREIGN KEY (smtransport)
+        REFERENCES m_mobilite.lt_mob_rurbain_mtransport (code) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT geo_mob_rurbain_ze_statut_fkey FOREIGN KEY (statut)
+        REFERENCES m_mobilite.lt_mob_rurbain_statut (code) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT geo_mob_rurbain_ze_zetype_fkey FOREIGN KEY (zetype)
+        REFERENCES m_mobilite.lt_mob_rurbain_zetype (code) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+-- ################################################################# TABLE lk_voirie_rurbain ###############################################
+-- Table: m_mobilite.lk_voirie_rurbain
+
+-- DROP TABLE m_mobilite.lk_voirie_rurbain;
+
+CREATE TABLE m_mobilite.lk_voirie_rurbain
+(
+    id_tronc bigint NOT NULL,
+    id_ligne character varying(30) COLLATE pg_catalog."default" NOT NULL,
+    sens character varying(2) COLLATE pg_catalog."default" DEFAULT '00'::character varying,
+    desserte character varying(2) COLLATE pg_catalog."default" DEFAULT '00'::character varying,
+    statut character varying(2) COLLATE pg_catalog."default" DEFAULT '00'::character varying,
+    date_sai timestamp without time zone NOT NULL DEFAULT now(),
+    date_maj timestamp without time zone,
+    n_car character varying(100) COLLATE pg_catalog."default",
+    gid integer NOT NULL DEFAULT nextval('m_mobilite.lk_voirie_rurbain_gid_seq'::regclass),
+    CONSTRAINT lk_voirie_rurbain_pkey PRIMARY KEY (gid),
+    CONSTRAINT lk_voirie_rurbain_desserte_fkey FOREIGN KEY (desserte)
+        REFERENCES m_mobilite.lt_mob_rurbain_desserte (code) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT lk_voirie_rurbain_idligne_fkey FOREIGN KEY (id_ligne)
+        REFERENCES m_mobilite.an_mob_rurbain_ligne (id_ligne) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT lk_voirie_rurbain_sens_fkey FOREIGN KEY (sens)
+        REFERENCES m_mobilite.lt_mob_rurbain_sens (code) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT lk_voirie_rurbain_statut_fkey FOREIGN KEY (statut)
+        REFERENCES m_mobilite.lt_mob_rurbain_statut (code) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
 
 
     
