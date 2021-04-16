@@ -231,14 +231,45 @@ L'ensemble des classes d'objets unitaires sont stockées dans le schéma m_mobil
 
 ### classes d'objets applicatives de gestion :
 
-Sans objet
+`geo_v_tic_gestion_desserte_ze` : Vue éditable pour la gestion des dessertes de ligne aux zones d''embarquement
+`geo_v_tic_gestion_doc_ze` : Vue éditable pour la gestion des documents liés aux zones d''embarquement
+`geo_v_tic_gestion_ligne` : Vue éditable pour la gestion des données des lignes du réseau TIC (ajout, modification ou suppression de la desserte des tronçons du référentiel de voiries)
+`geo_v_tic_gestion_ligne_insert` : Vue éditable pour la gestion des données des lignes du réseau TIC (uniquement ajout de la desserte des tronçons du référentiel de voiries)
+`geo_v_tic_ligne_plan` : Vue regroupant le tracé de toutes les lignes pour aides à l'affichage du QGIS de gestion des données du réseau TIC (filtre par n° de ligne)
 
 ---
 
 ### classes d'objets applicatives métiers sont classés dans le schéma x_apps :
  
-`x_apps.xapps_geo_v_dec_pav_lieu_orient` : Vue géométrique des liens entre les lieux de collecte supprimés, déplacés (nouvel emplacement)
-
+`x_apps.an_vmr_rurbain_tab1` : Vue matérialisée rafraichie formatant la liste des lignes de bus urbaines pour recherche par ligne dans GEO
+`x_apps.an_vmr_rurbain_tab2` : Vue matérialisée rafraichie contenant le nombre d'arrêt par type pour le TAB dans GEO
+`x_apps.xapps_geo_vmr_tic_desserte` : Vue géométrique pour la gestion des dessertes aux zones d'embarquement
+`x_apps.xapps_geo_vmr_tic_desserte_descente` : Vue géométrique pour la gestion des dessertes aux zones d'embarquement (descente uniquement)
+`x_apps.xapps_geo_vmr_tic_djf_la_a` : Vue géométrique des lieux d'arrêt (sens aller ou retour) des lignes Dimanches et Jours fériés du réseau TIC
+`x_apps.xapps_geo_vmr_tic_djf_la_ar` : Vue géométrique des lieux d'arrêt (sens aller et retour) des lignes Dimanches et Jours fériés du réseau TIC
+`x_apps.xapps_geo_vmr_tic_la_eti_arretdjf` : Vue géographique représentant les noms des lieux d''arrêts des lignes DJF pour l'affichage dans GEO
+`x_apps.xapps_geo_vmr_tic_la_eti_arretla` : Vue géographique représentant les noms des lieux d'arrêts des LU pour l'affichage dans GEO
+`x_apps.xapps_geo_vmr_tic_la_eti_arretpu` : Vue géographique représentant les noms des lieux d'arrêts des lignes PU pour l'affichage dans GEO
+`x_apps.xapps_geo_vmr_tic_la_eti_arretsco` : Vue géographique représentant les noms des lieux d'arrêts des lignes scolaires pour l'affichage dans GEO
+`x_apps.xapps_geo_vmr_tic_la_eti_arrettad` : Vue géographique représentant les noms des lieux d'arrêts des lignes AlloTIC pour l'affichage dans GEO
+`x_apps.xapps_geo_vmr_tic_la_eti_terminus` : Vue géographique représentant les terminus LU avec leur nom et ligne associée
+`x_apps.xapps_geo_vmr_tic_la_eti_terminus_djf` : Vue géographique représentant les terminus des lignes du dimanche et jours fériés avec leur nom et ligne associée
+`x_apps.xapps_geo_vmr_tic_la_eti_terminus_pu` : Vue géographique représentant les terminus des lignes péri-urbaines avec leur nom et ligne associée
+`x_apps.xapps_geo_vmr_tic_la_eti_terminus_sco` : Vue géographique représentant les terminus des lignes scolaires avec leur nom et ligne associée
+`x_apps.xapps_geo_vmr_tic_la_eti_terminus_tad` : Vue géographique représentant les terminus des lignes AlloTIC avec leur nom et ligne associée
+`x_apps.xapps_geo_vmr_tic_ligne_plan` : Vue matérialisée rafraichie formatant la liste des lignes de bus du réseau TIC pour la recherche par ligne dans GEO et le TAB
+`x_apps.xapps_geo_vmr_tic_lu_la_a` : Vue géométrique des lieux d''arrêt (sens aller ou retour) des lignes urbaines du réseau TIC
+`x_apps.xapps_geo_vmr_tic_lu_la_ar` : Vue géométrique des lieux d'arrêt (sens aller et retour) des lignes urbaines du réseau TIC
+`x_apps.xapps_geo_vmr_tic_pu_la_a` : Vue géométrique des lieux d'arrêt (sens aller ou retour) des lignes PU du réseau TIC
+`x_apps.xapps_geo_vmr_tic_pu_la_ar` : Vue géométrique des lieux d'arrêt (sens aller et retour) des lignes PU du réseau TIC
+`x_apps.xapps_geo_vmr_tic_sco_la_a` : Vue géométrique des lieux d'arrêt (sens aller ou retour) des lignes scolaires du réseau TIC
+`x_apps.xapps_geo_vmr_tic_sco_la_ar` : Vue géométrique des lieux d'arrêt (sens aller et retour) des lignes scolaires du réseau TIC
+`x_apps.xapps_geo_vmr_tic_tad_la` : Vue géométrique des lieux d'arrêt des lignes AlloTic (TAD) du réseau TIC
+`x_apps.xapps_geo_vmr_tic_ze` : Vue géométrique des zones d'embarquement des lignes du réseau TIC
+`x_apps.xapps_geo_vmr_tic_ze_200m` : Vue matérialisée rafraichie (trigger de rafraichissement si données ZE ou passage MAJ) géométrique des zones de chalandise (200m) de chaque arrêt actif
+`x_apps.xapps_geo_vmr_tic_ze_500m` : Vue matérialisée rafraichie (trigger de rafraichissement si données ZE ou passage MAJ) géométrique des zones de chalandise (500m) de chaque arrêt actif
+`x_apps.xapps_geo_vmr_tic_ze_nav` : Vue matérialisée rafraichie (trigger de rafraichissement si données ZE ou passage MAJ) géométrique des zones d''embarquement avec les lignes en desserte du réseau TIC pour exploitation dans le navigateur carto (recherche et affichage)
+`x_apps.xapps_geo_vmr_tic_zela` : Vue géométrique des liens entre ZE et LA
 
 
 ### classes d'objets applicatives grands publics sont classés dans le schéma x_apps_public :
