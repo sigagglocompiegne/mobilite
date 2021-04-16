@@ -18,7 +18,7 @@ La base de données est principalement mise à jour par le service de l'informat
 
 ## Modèle relationnel simplifié
 
-[!picto](mcd_tic.png)
+![picto](mcd_tic.png)
 
 
 ## Dépendances
